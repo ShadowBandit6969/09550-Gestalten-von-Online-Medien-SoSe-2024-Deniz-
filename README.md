@@ -1,4 +1,5 @@
 Project Description
+
 This project is a dynamic sketch for architecture, created using the p5.js library, a library that makes coding interactive graphics and animations “simple”. 
 The sketch simulates the movement of three plotter heads that draw lines on the canvas (like an architect’s sketch), creating a generative art piece. 
 The plotter heads move randomly, bouncing off the edges of the canvas and are connected by each other.
