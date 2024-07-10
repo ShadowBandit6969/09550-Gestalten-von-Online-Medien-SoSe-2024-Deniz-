@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>p5.js Sketch</title>
+  <!-- Einbinden der p5.js Bibliothek -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
+</head>
+<body>
+  <!-- Canvas Container -->
+  <div id="canvas-container"></div>
+
+  <!-- Initialisierung und Zeichnung des Sketches -->
+  <script>
+    let plotterHead, last, direction;
+    let plotterHead2, last2, direction2;
+    let plotterHead3, last3, direction3;
+    let t;
+    let startTime;
+
+    function setup() {
+      createCanvas(800, 800);
+      background(255, 250, 240);
+      stroke(0, 100);
+      strokeWeight(1);
+
+      plotterHead = createVector(random(width), random(height));
+      last = plotterHead.copy();
+      direction = p5.Vector.random2D().mult(20); // Geschwindigkeit erhöht
+
+      plotterHead2 = createVector(random(width), random(height));
+      last2 = plotterHead2.copy();
+      direction2 = p5.Vector.random2D().mult(20); // Geschwindigkeit erhöht
+
+      plotterHead3 = createVector(random(width), random(height));
+      last3 = plotterHead3.copy();
+      direction3 = p5.Vector.random2D().mult(20); // Geschwindigkeit erhöht
+
+      startTime = millis();
+      t = 600;
+      frameRate(t);
+    }
+
+    function draw() {
+      let elapsedTime = millis() - startTime;
+
+      if (elapsedTime > 5000) {
+        setup();
+      }
+
+      plotterHead.add(direction); // Richtungsvektor direkt addiert
+      line(plotterHead.x, plotterHead.y, last.x, last.y);
+      last.set(plotterHead);
+
+      if (plotterHead.x >= width || plotterHead.x <= 0) {
+        direction.x *= -1; // Abprallen an den Rändern
+      }
+      if (plotterHead.y >= height || plotterHead.y <= 0) {
+        direction.y *= -1; // Abprallen an den Rändern
+      }
+
+      plotterHead2.add(direction2); // Richtungsvektor direkt addiert
+      line(plotterHead2.x, plotterHead2.y, last3.x, last.y);
+      last2.set(plotterHead2);
+
+      if (plotterHead2.x >= width || plotterHead2.x <= 0) {
+        direction2.x *= -1; // Abprallen an den Rändern
+      }
+      if (plotterHead2.y >= height || plotterHead2.y <= 0) {
+        direction2.y *= -1; // Abprallen an den Rändern
+      }
+
+      plotterHead3.add(direction2); // Richtungsvektor direkt addiert
+      line(plotterHead3.x, plotterHead3.y, last3.x, last.y);
+      last3.set(plotterHead);
+
+      if (plotterHead3.x >= width || plotterHead3.x <= 0) {
+        direction3.x *= -10000000; // Abprallen an den Rändern
+      }
+      if (plotterHead3.y >= height || plotterHead3.y <= 0) {
+        direction3.y *= -1; // Abprallen an den Rändern
+      }
+    }
+  </script>
+</body>
+</html>
+
